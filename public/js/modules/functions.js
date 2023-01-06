@@ -1,10 +1,18 @@
-import { guerrier } from "./instances.js";
+import { mage,archer,guerrier } from "./instances.js";
 
-export function nomHeros() {
-    // let rep = prompt(`entrez le nom de votre heros`)
-    // guerrier.nom = rep;
-    console.log(guerrier.nom);
+export function nomHeros(leType) {
+    if (leType == `mage`) {
+        let nom = prompt(`entrez le nom de votre heros`)
+        mage.nom = nom;
+    }if (leType == `archer`) {
+        let nom = prompt(`entrez le nom de votre heros`)
+        archer.nom = nom;
+    }if (leType == `guerrier`) {
+        let nom = prompt(`entrez le nom de votre heros`)
+        guerrier.nom = nom;
+    };
 };
+
 
 export function mana(){
     let mana = [7,9,11];
@@ -17,3 +25,8 @@ export function fleche(){
     let nbFleche = flechette[Math.floor(Math.random()*flechette.length)];
     return nbFleche;
 };
+
+
+
+
+
