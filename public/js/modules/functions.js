@@ -43,7 +43,42 @@ export function fleche(){
 
 // affectation des point de vie et point d'attaque des heros
 export function pointDeVie() {
-    
+    let pointMax =1000;
+    let pvMage;
+    let pvArcher;
+    let pvGuerrier;
+    let sommePv;
+    let restePoint =1000;
+    alert(`Vous avez a votre disposition 1000 points de vie a partager entre vos 3 heros `)
+
+
+    do {
+        pvMage = parseInt(prompt(`entrez les points de vie pour ${mage.nom} `));
+        mage.pointVie = pvMage;
+        restePoint -= pvMage;
+
+        pvArcher = parseInt(prompt(`entrez les points de vie pour ${archer.nom} `));
+        archer.pointVie = pvArcher;
+        restePoint -= pvArcher;
+
+        pvGuerrier = parseInt(prompt(`entrez les points de vie pour ${guerrier.nom} `));
+        guerrier.pointVie = pvGuerrier;
+        restePoint -= pvGuerrier;
+        
+        if (sommePv>pointMax) {
+            alert(`vous avez entrez ${sommePv} cela depasse la reserve que je vous ai donner, il faut reccommencer la repartition`);
+        }if (sommePv == pointMax) {
+            alert(`vous avez entrez ${sommePv} sur les ${pointMax} que je vous ai donner on peux passer a vos point de combat`);
+        }if (sommePv < pointMax) {
+            alert(`vous avez entrez ${sommePv} sur les ${pointMax} que je vous ai donner, il vous en reste ${restePoint} a distribuer, recommencer`);
+        };
+
+
+    } while (sommePv != pointMax);
+
+
+
+
 };
 
 
