@@ -17,19 +17,9 @@ export class Boss extends Personnage {
 };
 
 export class Heros extends Personnage {
-    constructor(nom, pointVie, pointAttaque) {
+    constructor(nom, pointVie, pointAttaque,specPerso) {
         super(nom, pointVie, pointAttaque);
-        this.defense=()=>{
-        };
-        this.attaque=()=>{
-        };
-    };
-};
-
-export class Guerrier extends Heros {
-    constructor(nom, pointVie, pointAttaque,pointRage) {
-        super(nom, pointVie, pointAttaque);
-        this.pointRage = pointRage;
+        this.specPerso = specPerso;
         
         this.defense=()=>{
         };
@@ -37,6 +27,7 @@ export class Guerrier extends Heros {
         };
     };
 };
+
 
 
 
