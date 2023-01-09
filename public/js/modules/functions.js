@@ -294,8 +294,6 @@ export function allAction() {
         };
         nbArcher++;
 
-        console.log(archer.specPerso);
-
         switch (boss) {
             // boss venom vs les heros
             case `Venom`:
@@ -462,7 +460,5 @@ export function allAction() {
             default:
                 break;
         };
-
     };
-
 };

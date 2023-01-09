@@ -8,9 +8,9 @@ import {
 } from "./functions.js";
 
 // boss
-export let venom = new Boss(`Venom`,800,30);
-export let father = new Boss(`Father`,800,30);
-export let dio = new Boss(`Dio`,800,40);
+export let venom = new Boss(`Venom`,3000,50);
+export let father = new Boss(`Father`,3000,50);
+export let dio = new Boss(`Dio`,3000,50);
 
 // heros 300 pv 120 heros
 export let mage = new Heros(``,100,40,mana(),`mage`);
