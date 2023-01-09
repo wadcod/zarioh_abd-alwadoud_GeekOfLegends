@@ -3,7 +3,8 @@ import {
     whatBoss,
     pointDeVie,
     pointDeCombat,
-    modeCombat
+    modeCombat,
+    enigmeBoss
 } from "./modules/functions.js";
 import {
     mage,
@@ -34,8 +35,9 @@ import {
 // console.log(archer);
 // console.log(guerrier);
 
-
 // modeCombat();
 // console.log(mage);
 // console.log(archer);
 // console.log(guerrier);
+
+console.log(enigmeBoss());

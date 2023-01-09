@@ -9,9 +9,6 @@ export class Personnage {
 export class Boss extends Personnage {
     constructor(nom, pointVie, pointAttaque) {
         super(nom, pointVie, pointAttaque);
-        this.enigme = () => {
-
-        };
     };
 };
 

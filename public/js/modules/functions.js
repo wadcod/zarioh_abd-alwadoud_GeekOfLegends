@@ -16,6 +16,44 @@ export function whatBoss() {
     return quelBoss;
 };
 
+// function enigme boss en dessous des 20% hp pose lenigme au hazard et return un bolleen
+export function enigmeBoss() {
+    let rep;
+    let finalRep;
+    let question = Math.floor(Math.random() * 3) + 1;
+    switch (question) {
+        case 1:
+            rep = prompt(`Que fait retourne Math.floor(1.3 * 10) ?`);
+            if (rep == 13) {
+                finalRep = true;
+            }else{
+                finalRep = false;
+            };
+            break;
+        case 2:
+            rep = prompt(`Quel est l'indice du premier "i" de cette question ?`);
+            if (rep == 11) {
+                finalRep = true;
+            }else{
+                finalRep = false;
+            };
+            break;
+        case 3:
+            rep = prompt(`Une fois que l'on me prononce, je n'existe plus. Qui suis-je ?`);
+            if (rep == `silence`) {
+                finalRep = true;
+            }else{
+                finalRep = false;
+            };
+            break;
+        default:
+            break;
+    };
+    return finalRep;
+};
+
+
+
 
 // creation nom des heros par le user
 export function nomHeros(leType) {
@@ -126,7 +164,7 @@ export function pointDeCombat() {
 
 
 // function mode de combat attaque defense ou normale
-export function modeCombat(){
+export function modeCombat() {
     let choix = prompt(`choix mode combat normal , attaque ou defense ecrivez votre choix : `);
     while (choix != `normal` && choix != `defense` && choix != `attaque`) {
         choix = prompt(`choix mode combat normal , attaque ou defense ecrivez votre choix : `);
@@ -136,18 +174,13 @@ export function modeCombat(){
         archer.attaque();
         guerrier.attaque();
         alert(`c'est parti en mode attaque! `);
-    } if (choix == `defense`) {
+    }
+    if (choix == `defense`) {
         mage.defense();
         archer.defense();
         guerrier.defense();
         alert(`c'est parti en mode defense! `);
-    }else{
+    } else {
         alert(`c'est parti ! en mode normal `);
     };
 };
-
-
-
-
-
-
