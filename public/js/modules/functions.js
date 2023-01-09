@@ -239,8 +239,12 @@ export function allAction() {
     let combat = true;
     let repEnigme;
     let vieAll;
-    let pointGuerrier=0;
+    let pointGuerrier = 0;
     let guerrierPointAttaque = guerrier.pointAttaque;
+    let magePointAttaque = mage.pointAttaque;
+    let nbMage;
+    let archerPointAttaque = archer.pointAttaque;
+    let nbArcher;
 
 
 
@@ -254,17 +258,42 @@ export function allAction() {
         // bonus heros guerrier
         if (pointGuerrier < 4) {
             bonusGuerrier();
-        }if(pointGuerrier == 4){
-            guerrier.pointAttaque = guerrier.pointAttaque*1.25;
-        }if (pointGuerrier >= 5) {
+        }
+        if (pointGuerrier == 4) {
+            guerrier.pointAttaque = guerrier.pointAttaque * 1.25;
+        }
+        if (pointGuerrier >= 5) {
             pointGuerrier = 0;
             guerrier.pointAttaque = guerrierPointAttaque;
         };
-        console.log(guerrier.pointAttaque);
-        console.log(pointGuerrier);
         pointGuerrier++;
-        
-        
+
+
+        // bonus mage
+        mage.specPerso = mage.specPerso - 2;
+        if (mage.specPerso < 2) {
+            mage.pointAttaque = 0;
+            recupMana();
+            nbMage=1;
+        };
+        if (nbMage==2) {
+            mage.pointAttaque = magePointAttaque;
+        };
+        nbMage++;
+
+        //bonus archer
+        archer.specPerso -=1;
+        if (archer.specPerso == 0) {
+            archer.pointAttaque = 0;
+            recupFleche();
+            nbArcher=1;
+        };
+        if (nbArcher==2) {
+            archer.pointAttaque = archerPointAttaque;
+        };
+        nbArcher++;
+
+        console.log(archer.specPerso);
 
         switch (boss) {
             // boss venom vs les heros
@@ -273,9 +302,9 @@ export function allAction() {
                 if (venom.pointVie <= venom.pointVie * 0.2) {
                     repEnigme = enigmeBoss();
                     if (repEnigme) {
-                        alert(`bravo vous avez vaincu le boss`)
+                        alert(`bravo vous avez vaincu le boss`);
                     }
-                    if (!repEnigme && vieAll <= 0) {
+                    if (!repEnigme || vieAll <= 0) {
                         alert(`Vous vous etes fait decimer par ${venom.nom}`);
                     };
                     return combat = false;
@@ -325,9 +354,9 @@ export function allAction() {
                 if (father.pointVie <= father.pointVie * 0.2) {
                     repEnigme = enigmeBoss();
                     if (repEnigme) {
-                        alert(`bravo vous avez vaincu le boss`)
+                        alert(`bravo vous avez vaincu le boss`);
                     }
-                    if (!repEnigme && vieAll <= 0) {
+                    if (!repEnigme || vieAll <= 0) {
                         alert(`Vous vous etes fait decimer par ${venom.nom}`);
                     };
                     return combat = false;
@@ -377,7 +406,7 @@ export function allAction() {
                     if (repEnigme) {
                         alert(`bravo vous avez vaincu le boss `)
                     }
-                    if (!repEnigme && vieAll <= 0) {
+                    if (!repEnigme || vieAll <= 0) {
                         alert(`Vous vous etes fait decimer par ${venom.nom}`);
                     };
                     return combat = false;
