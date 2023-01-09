@@ -22,28 +22,40 @@ export function enigmeBoss() {
     let finalRep;
     let question = Math.floor(Math.random() * 3) + 1;
     switch (question) {
+        // enigme1
         case 1:
-            rep = prompt(`Que fait retourne Math.floor(1.3 * 10) ?`);
-            if (rep == 13) {
-                finalRep = true;
-            }else{
-                finalRep = false;
+            for (let i = 0; i < 3; i++) {
+                rep = prompt(`Que fait retourne Math.floor(1.3 * 10) ?`);
+                if (rep == 13) {
+                    finalRep = true;
+                    break;
+                } else {
+                    finalRep = false;
+                };
             };
             break;
+        // enigme2
         case 2:
-            rep = prompt(`Quel est l'indice du premier "i" de cette question ?`);
-            if (rep == 11) {
-                finalRep = true;
-            }else{
-                finalRep = false;
+            for (let i = 0; i < 3; i++) {
+                rep = prompt(`Quel est l'indice du premier "i" de cette question ?`);
+                if (rep == 11) {
+                    finalRep = true;
+                    break;
+                } else {
+                    finalRep = false;
+                };
             };
             break;
+        // enigme3
         case 3:
-            rep = prompt(`Une fois que l'on me prononce, je n'existe plus. Qui suis-je ?`);
-            if (rep == `silence`) {
-                finalRep = true;
-            }else{
-                finalRep = false;
+            for (let i = 0; i < 3; i++) {
+                rep = prompt(`Une fois que l'on me prononce, je n'existe plus. Qui suis-je ?`);
+                if (rep == `silence`) {
+                    finalRep = true;
+                    break;
+                } else {
+                    finalRep = false;
+                };
             };
             break;
         default:
