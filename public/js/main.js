@@ -4,7 +4,8 @@ import {
     pointDeVie,
     pointDeCombat,
     modeCombat,
-    enigmeBoss
+    enigmeBoss,
+    bonusGeurrier
 } from "./modules/functions.js";
 import {
     mage,
@@ -40,4 +41,8 @@ import {
 // console.log(archer);
 // console.log(guerrier);
 
-console.log(enigmeBoss());
+// console.log(enigmeBoss());
+
+
+
+

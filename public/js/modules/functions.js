@@ -196,3 +196,27 @@ export function modeCombat() {
         alert(`c'est parti ! en mode normal `);
     };
 };
+
+// bonus pour guerrier
+// >* Tous les tours le guerrier gagne 1 point de rage au bout de 4 points ,le guerrier gagne 25% ( * 1.25 ) d'attaque supplémentaire durant 1 tours puis retombe à 0 de rage et perd ce bonus.
+export function bonusGeurrier(){
+    return guerrier.specPerso += 1;
+};
+
+// >* Les attaques du mage lui coute 2 points quand il n'a plus assez de point de mana pour attaquer,il passe 1 tour sans attaquer et il récupère 7 points de mana
+// recupmana
+export function recupMana(){
+    return mage.specPerso += 7;
+};
+
+
+// >* les attaques de l'archer consomme deux flèches par tour et récupère une flèche chaque tour.Quand il n'a plus de flèches il passe un tour et récupère 6 flèches.
+// archer fleche
+
+export function recupFleche(){
+    archer.specPerso += 6;
+};
+
+
+
+
