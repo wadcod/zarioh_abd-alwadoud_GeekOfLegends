@@ -5,7 +5,7 @@ import {
     pointDeCombat,
     modeCombat,
     enigmeBoss,
-    bonusGeurrier,
+    bonusGuerrier,
     allAction
 } from "./modules/functions.js";
 

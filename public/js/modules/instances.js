@@ -8,11 +8,11 @@ import {
 } from "./functions.js";
 
 // boss
-export let venom = new Boss(`Venom`, 500, 30);
-export let father = new Boss(`Father`, 600, 20);
-export let dio = new Boss(`Dio`, 300, 40);
+export let venom = new Boss(`Venom`,800,30);
+export let father = new Boss(`Father`,800,30);
+export let dio = new Boss(`Dio`,800,40);
 
-// heros
-export let mage = new Heros(``,800,50,mana(),`mage`);
-export let archer = new Heros(``,800,50,fleche(),`archer`);
-export let guerrier = new Heros(``,800,50,0,`guerrier`);
+// heros 300 pv 120 heros
+export let mage = new Heros(``,100,40,mana(),`mage`);
+export let archer = new Heros(``,100,40,fleche(),`archer`);
+export let guerrier = new Heros(``,100,50,0,`guerrier`);

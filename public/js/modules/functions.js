@@ -102,7 +102,7 @@ export function fleche() {
 
 // affectation des point de vie des heros
 export function pointDeVie() {
-    let pointMax = 1000;
+    let pointMax = 300;
     let pvMage;
     let pvArcher;
     let pvGuerrier;
@@ -115,11 +115,11 @@ export function pointDeVie() {
         mage.pointVie = pvMage;
         sommePv += pvMage;
 
-        pvArcher = parseInt(prompt(`entrez les points de vie pour ${archer.nom} `));
+        pvArcher = parseInt(prompt(`entrez les points de vie pour ${archer.nom} il reste ${pointMax - sommePv}`));
         archer.pointVie = pvArcher;
         sommePv += pvArcher;
 
-        pvGuerrier = parseInt(prompt(`entrez les points de vie pour ${guerrier.nom} `));
+        pvGuerrier = parseInt(prompt(`entrez les points de vie pour ${guerrier.nom} il reste ${pointMax - sommePv}`));
         guerrier.pointVie = pvGuerrier;
         sommePv += pvGuerrier;
 
@@ -140,7 +140,7 @@ export function pointDeVie() {
 
 // affectation des point d'attaque des heros
 export function pointDeCombat() {
-    let pointMax = 1000;
+    let pointMax = 150;
     let pcMage;
     let pcArcher;
     let pcGuerrier;
@@ -200,7 +200,7 @@ export function modeCombat() {
 
 // bonus pour guerrier
 // >* Tous les tours le guerrier gagne 1 point de rage au bout de 4 points ,le guerrier gagne 25% ( * 1.25 ) d'attaque supplémentaire durant 1 tours puis retombe à 0 de rage et perd ce bonus.
-export function bonusGeurrier() {
+export function bonusGuerrier() {
     return guerrier.specPerso += 1;
 };
 
@@ -237,19 +237,71 @@ export function allAction() {
     let lesHeros = [`mage`, `archer`, `guerrier`];
     let leHeros;
     let combat = true;
+    let repEnigme;
+    let vieAll;
+    let pointGuerrier=0;
+    let guerrierPointAttaque = guerrier.pointAttaque;
+
+
 
     while (combat) {
         // attaque des heros
         // attaque du boss
-        leHeros = lesHeros[Math.floor(Math.random() * 3)];
+        leHeros = lesHeros[Math.floor(Math.random() * lesHeros.length)];
+        vieAll = mage.pointVie + archer.pointVie + guerrier.pointVie;
+
+
+        // bonus heros guerrier
+        if (pointGuerrier < 4) {
+            bonusGuerrier();
+        }if(pointGuerrier == 4){
+            guerrier.pointAttaque = guerrier.pointAttaque*1.25;
+        }if (pointGuerrier >= 5) {
+            pointGuerrier = 0;
+            guerrier.pointAttaque = guerrierPointAttaque;
+        };
+        console.log(guerrier.pointAttaque);
+        console.log(pointGuerrier);
+        pointGuerrier++;
+        
+        
+
         switch (boss) {
+            // boss venom vs les heros
             case `Venom`:
-                console.log(`oko`);
-                if (venom.pointVie <= 0) {
-                    combat = false;
-                    break;
+                // enigme pour la victoire
+                if (venom.pointVie <= venom.pointVie * 0.2) {
+                    repEnigme = enigmeBoss();
+                    if (repEnigme) {
+                        alert(`bravo vous avez vaincu le boss`)
+                    }
+                    if (!repEnigme && vieAll <= 0) {
+                        alert(`Vous vous etes fait decimer par ${venom.nom}`);
+                    };
+                    return combat = false;
                 };
+                // verification pour savoir si le heros est vivant
+                if (mage.pointVie <= 0) {
+                    mageAttaque = mage.pointAttaque == 0;
+                    lesHeros.splice(lesHeros.indexOf(`mage`), 1, `mort`);
+                }
+                if (archer.pointVie <= 0) {
+                    archerAttaque = archer.pointAttaque == 0;
+                    lesHeros.splice(lesHeros.indexOf(`archer`), 1, `mort`);
+                }
+                if (guerrier.pointVie <= 0) {
+                    guerrierAttaque = guerrier.pointAttaque == 0;
+                    lesHeros.splice(lesHeros.indexOf(`guerrier`), 1, `mort`);
+                };
+
+                // verifier le guerrier si i l per ses pv
                 venom.pointVie -= mageAttaque + archerAttaque + guerrierAttaque;
+
+                // elimination des mort
+                do {
+                    leHeros = lesHeros[Math.floor(Math.random() * lesHeros.length)];
+                } while (leHeros == `mort`);
+
                 switch (leHeros) {
                     case `mage`:
                         mage.pointVie -= venom.pointAttaque;
@@ -261,14 +313,48 @@ export function allAction() {
                         guerrier.pointVie -= venom.pointAttaque;
                         break;
                 };
+                console.log(venom.pointVie + ` venom`);
+                console.log(`mage ` + mage.pointVie);
+                console.log(`archer ` + archer.pointVie);
+                console.log(`guerrier ` + guerrier.pointVie);
                 break;
+
+                // boss father vs les heros
             case `Father`:
-                console.log(`oko2222`);
-                if (father.pointVie <= 0) {
-                    combat = false;
-                    break;
+                // enigme pour la victoire
+                if (father.pointVie <= father.pointVie * 0.2) {
+                    repEnigme = enigmeBoss();
+                    if (repEnigme) {
+                        alert(`bravo vous avez vaincu le boss`)
+                    }
+                    if (!repEnigme && vieAll <= 0) {
+                        alert(`Vous vous etes fait decimer par ${venom.nom}`);
+                    };
+                    return combat = false;
                 };
+
+                // verification pour savoir si le heros est vivant
+                if (mage.pointVie <= 0) {
+                    mageAttaque = mage.pointAttaque == 0;
+                    lesHeros.splice(lesHeros.indexOf(`mage`), 1, `mort`);
+                }
+                if (archer.pointVie <= 0) {
+                    archerAttaque = archer.pointAttaque == 0;
+                    lesHeros.splice(lesHeros.indexOf(`archer`), 1, `mort`);
+
+                }
+                if (guerrier.pointVie <= 0) {
+                    guerrierAttaque = guerrier.pointAttaque == 0;
+                    lesHeros.splice(lesHeros.indexOf(`guerrier`), 1, `mort`);
+                };
+
                 father.pointVie -= mageAttaque + archerAttaque + guerrierAttaque;
+
+                // elimination des mort
+                do {
+                    leHeros = lesHeros[Math.floor(Math.random() * lesHeros.length)];
+                } while (leHeros == `mort`);
+
                 switch (leHeros) {
                     case `mage`:
                         mage.pointVie -= venom.pointAttaque;
@@ -280,14 +366,43 @@ export function allAction() {
                         guerrier.pointVie -= venom.pointAttaque;
                         break;
                 };
+                console.log(father.pointVie + ` father`);
                 break;
+
+                // boos Dio vs les heros
             case `Dio`:
-                console.log(`oko33333`);
-                if (dio.pointVie <= 0) {
-                    combat = false;
-                    break;
+                // enigme pour la victoire
+                if (dio.pointVie <= dio.pointVie * 0.2) {
+                    repEnigme = enigmeBoss();
+                    if (repEnigme) {
+                        alert(`bravo vous avez vaincu le boss `)
+                    }
+                    if (!repEnigme && vieAll <= 0) {
+                        alert(`Vous vous etes fait decimer par ${venom.nom}`);
+                    };
+                    return combat = false;
+                };
+
+                if (mage.pointVie <= 0) {
+                    mageAttaque = mage.pointAttaque == 0;
+                    lesHeros.splice(lesHeros.indexOf(`mage`), 1, `mort`);
+                }
+                if (archer.pointVie <= 0) {
+                    archerAttaque = archer.pointAttaque == 0;
+                    lesHeros.splice(lesHeros.indexOf(`archer`), 1, `mort`);
+
+                }
+                if (guerrier.pointVie <= 0) {
+                    guerrierAttaque = guerrier.pointAttaque == 0;
+                    lesHeros.splice(lesHeros.indexOf(`guerrier`), 1, `mort`);
                 };
                 dio.pointVie -= mageAttaque + archerAttaque + guerrierAttaque;
+
+                // elimination des mort
+                do {
+                    leHeros = lesHeros[Math.floor(Math.random() * lesHeros.length)];
+                } while (leHeros == `mort`);
+
                 switch (leHeros) {
                     case `mage`:
                         mage.pointVie -= venom.pointAttaque;
@@ -299,16 +414,12 @@ export function allAction() {
                         guerrier.pointVie -= venom.pointAttaque;
                         break;
                 };
+                console.log(dio.pointVie + ` dio`);
                 break;
             default:
                 break;
         };
 
-        
-
     };
-    console.log(dio.pointVie + ` dio`);
-    console.log(father.pointVie + ` father`);
-    console.log(venom.pointVie + ` venom`);
 
 };
