@@ -5,8 +5,10 @@ import {
     pointDeCombat,
     modeCombat,
     enigmeBoss,
-    bonusGeurrier
+    bonusGeurrier,
+    allAction
 } from "./modules/functions.js";
+
 import {
     mage,
     archer,
@@ -43,6 +45,7 @@ import {
 
 // console.log(enigmeBoss());
 
+allAction();
 
 
 

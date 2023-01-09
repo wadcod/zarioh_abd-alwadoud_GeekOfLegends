@@ -1,3 +1,5 @@
+import { archer, mage } from "./instances.js";
+
 export class Personnage {
     constructor(nom, pointVie, pointAttaque) {
         this.nom = nom;
@@ -28,3 +30,6 @@ export class Heros extends Personnage {
         };
     };
 };
+
+
+

@@ -34,7 +34,7 @@ export function enigmeBoss() {
                 };
             };
             break;
-        // enigme2
+            // enigme2
         case 2:
             for (let i = 0; i < 3; i++) {
                 rep = prompt(`Quel est l'indice du premier "i" de cette question ?`);
@@ -46,7 +46,7 @@ export function enigmeBoss() {
                 };
             };
             break;
-        // enigme3
+            // enigme3
         case 3:
             for (let i = 0; i < 3; i++) {
                 rep = prompt(`Une fois que l'on me prononce, je n'existe plus. Qui suis-je ?`);
@@ -192,20 +192,21 @@ export function modeCombat() {
         archer.defense();
         guerrier.defense();
         alert(`c'est parti en mode defense! `);
-    } else {
+    }
+    if (choix == `normal`) {
         alert(`c'est parti ! en mode normal `);
     };
 };
 
 // bonus pour guerrier
 // >* Tous les tours le guerrier gagne 1 point de rage au bout de 4 points ,le guerrier gagne 25% ( * 1.25 ) d'attaque supplémentaire durant 1 tours puis retombe à 0 de rage et perd ce bonus.
-export function bonusGeurrier(){
+export function bonusGeurrier() {
     return guerrier.specPerso += 1;
 };
 
 // >* Les attaques du mage lui coute 2 points quand il n'a plus assez de point de mana pour attaquer,il passe 1 tour sans attaquer et il récupère 7 points de mana
 // recupmana
-export function recupMana(){
+export function recupMana() {
     return mage.specPerso += 7;
 };
 
@@ -213,10 +214,101 @@ export function recupMana(){
 // >* les attaques de l'archer consomme deux flèches par tour et récupère une flèche chaque tour.Quand il n'a plus de flèches il passe un tour et récupère 6 flèches.
 // archer fleche
 
-export function recupFleche(){
+export function recupFleche() {
     archer.specPerso += 6;
 };
 
 
+export function allAction() {
+    let boss = whatBoss();
+    // mage.specPerso = mana();
+    // archer.specPerso = fleche();
+    // nomHeros(`mage`);
+    // nomHeros(`archer`);
+    // nomHeros(`guerrier`);
+    // pointDeVie();
+    // pointDeCombat();
+    // modeCombat();
 
+    // variable combat
+    let mageAttaque = mage.pointAttaque;
+    let archerAttaque = mage.pointAttaque;
+    let guerrierAttaque = mage.pointAttaque;
+    let lesHeros = [`mage`, `archer`, `guerrier`];
+    let leHeros;
+    let combat = true;
 
+    while (combat) {
+        // attaque des heros
+        // attaque du boss
+        leHeros = lesHeros[Math.floor(Math.random() * 3)];
+        switch (boss) {
+            case `Venom`:
+                console.log(`oko`);
+                if (venom.pointVie <= 0) {
+                    combat = false;
+                    break;
+                };
+                venom.pointVie -= mageAttaque + archerAttaque + guerrierAttaque;
+                switch (leHeros) {
+                    case `mage`:
+                        mage.pointVie -= venom.pointAttaque;
+                        break;
+                    case `archer`:
+                        archer.pointVie -= venom.pointAttaque;
+                        break;
+                    case `guerrier`:
+                        guerrier.pointVie -= venom.pointAttaque;
+                        break;
+                };
+                break;
+            case `Father`:
+                console.log(`oko2222`);
+                if (father.pointVie <= 0) {
+                    combat = false;
+                    break;
+                };
+                father.pointVie -= mageAttaque + archerAttaque + guerrierAttaque;
+                switch (leHeros) {
+                    case `mage`:
+                        mage.pointVie -= venom.pointAttaque;
+                        break;
+                    case `archer`:
+                        archer.pointVie -= venom.pointAttaque;
+                        break;
+                    case `guerrier`:
+                        guerrier.pointVie -= venom.pointAttaque;
+                        break;
+                };
+                break;
+            case `Dio`:
+                console.log(`oko33333`);
+                if (dio.pointVie <= 0) {
+                    combat = false;
+                    break;
+                };
+                dio.pointVie -= mageAttaque + archerAttaque + guerrierAttaque;
+                switch (leHeros) {
+                    case `mage`:
+                        mage.pointVie -= venom.pointAttaque;
+                        break;
+                    case `archer`:
+                        archer.pointVie -= venom.pointAttaque;
+                        break;
+                    case `guerrier`:
+                        guerrier.pointVie -= venom.pointAttaque;
+                        break;
+                };
+                break;
+            default:
+                break;
+        };
+
+        
+
+    };
+    console.log(dio.pointVie + ` dio`);
+    console.log(father.pointVie + ` father`);
+    console.log(venom.pointVie + ` venom`);
+
+};

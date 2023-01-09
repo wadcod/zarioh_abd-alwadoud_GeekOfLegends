@@ -13,6 +13,6 @@ export let father = new Boss(`Father`, 600, 20);
 export let dio = new Boss(`Dio`, 300, 40);
 
 // heros
-export let mage = new Heros(``, 200, 50, mana(),`mage`);
-export let archer = new Heros(``, 300, 50, fleche(),`archer`);
-export let guerrier = new Heros(``, 300, 50, 0,`guerrier`);
+export let mage = new Heros(``,800,50,mana(),`mage`);
+export let archer = new Heros(``,800,50,fleche(),`archer`);
+export let guerrier = new Heros(``,800,50,0,`guerrier`);
