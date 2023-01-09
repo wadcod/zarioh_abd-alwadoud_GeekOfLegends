@@ -95,24 +95,24 @@ export function pointDeCombat() {
     let pcArcher;
     let pcGuerrier;
     let sommePc;
-    alert(`Vous avez a votre disposition 1000 points de vie a partager entre vos 3 heros `)
+    alert(`Vous avez a votre disposition 1000 points d'attaque a partager entre vos 3 heros `)
 
     do {
         sommePc = 0;
-        pcMage = parseInt(prompt(`entrez les points de vie pour ${mage.nom} `));
+        pcMage = parseInt(prompt(`entrez les points d'attaque pour ${mage.nom} `));
         mage.pointAttaque = pcMage;
         sommePc += pcMage;
 
-        pcArcher = parseInt(prompt(`entrez les points de vie pour ${archer.nom} `));
+        pcArcher = parseInt(prompt(`entrez les points d'attaque pour ${archer.nom} `));
         archer.pointAttaque = pcArcher;
         sommePc += pcArcher;
 
-        pcGuerrier = parseInt(prompt(`entrez les points de vie pour ${guerrier.nom} `));
+        pcGuerrier = parseInt(prompt(`entrez les points d'attaque pour ${guerrier.nom} `));
         guerrier.pointAttaque = pcGuerrier;
         sommePc += pcGuerrier;
 
         if (sommePc > pointMax) {
-            alert(`vous avez entrez ${sommePv} cela depasse la reserve que je vous ai donner, il faut reccommencer la repartition`);
+            alert(`vous avez entrez ${sommePc} cela depasse la reserve que je vous ai donner, il faut reccommencer la repartition`);
         }
         if (sommePc == pointMax) {
             alert(`vous avez entrez ${sommePc} sur les ${pointMax} que je vous ai donner on peux passer a vos point de combat`);
@@ -123,3 +123,31 @@ export function pointDeCombat() {
     } while (sommePc != pointMax);
 
 };
+
+
+// function mode de combat attaque defense ou normale
+export function modeCombat(){
+    let choix = prompt(`choix mode combat normal , attaque ou defense ecrivez votre choix : `);
+    while (choix != `normal` && choix != `defense` && choix != `attaque`) {
+        choix = prompt(`choix mode combat normal , attaque ou defense ecrivez votre choix : `);
+    };
+    if (choix == `attaque`) {
+        mage.attaque();
+        archer.attaque();
+        guerrier.attaque();
+        alert(`c'est parti en mode attaque! `);
+    } if (choix == `defense`) {
+        mage.defense();
+        archer.defense();
+        guerrier.defense();
+        alert(`c'est parti en mode defense! `);
+    }else{
+        alert(`c'est parti ! en mode normal `);
+    };
+};
+
+
+
+
+
+

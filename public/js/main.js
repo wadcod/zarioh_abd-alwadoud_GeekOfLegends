@@ -2,7 +2,8 @@ import {
     nomHeros,
     whatBoss,
     pointDeVie,
-    pointDeCombat
+    pointDeCombat,
+    modeCombat
 } from "./modules/functions.js";
 import {
     mage,
@@ -20,6 +21,21 @@ import {
 
 // pointDeCombat();
 
-console.log(mage);
-console.log(archer);
-console.log(guerrier);
+// mage.defense();
+// archer.defense();
+// guerrier.defense();
+// console.log(mage);
+// console.log(archer);
+// console.log(guerrier);
+// mage.attaque();
+// archer.attaque();
+// guerrier.attaque();
+// console.log(mage);
+// console.log(archer);
+// console.log(guerrier);
+
+
+// modeCombat();
+// console.log(mage);
+// console.log(archer);
+// console.log(guerrier);

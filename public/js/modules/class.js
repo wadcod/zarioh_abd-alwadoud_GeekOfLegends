@@ -21,7 +21,13 @@ export class Heros extends Personnage {
         this.specPerso = specPerso;
         this.classeHeros = classeHeros;
 
-        this.defense = () => {};
-        this.attaque = () => {};
+        this.defense = () => {
+            this.pointVie = this.pointVie*2.5;
+            this.pointAttaque = this.pointAttaque*0.5;
+        };
+        this.attaque = () => {
+            this.pointVie = this.pointVie*0.75;
+            this.pointAttaque = this.pointAttaque*1.4;
+        };
     };
 };
